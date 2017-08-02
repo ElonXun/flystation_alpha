@@ -1,0 +1,11 @@
+.header {
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #808080;;
+
+}
+
+.navTitle {
+  font-size: 23px;
+  font-weight: bold;
+}
