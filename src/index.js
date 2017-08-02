@@ -7,7 +7,7 @@ import reducer from './reducers';
 import route from './router';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(reducer)
+const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 // const root = ()=>{
 //   return(
