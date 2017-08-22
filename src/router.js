@@ -1,7 +1,6 @@
 import React from 'react';
-import {HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
-import App from './App';
-import Homepage from './components/public/homeContent/homeContent';
+import {HashRouter as Router, Route, Switch } from 'react-router-dom';
+import asyncComponent from './asyncComponent';
 
 
 // const RouteConfig = () => {
@@ -11,11 +10,23 @@ import Homepage from './components/public/homeContent/homeContent';
 //       </Router>
 //   )
 // }
+
+const App = asyncComponent(() =>
+    import('./App')
+)
+
+const getAsyncComponent = (component)=>{
+  return asyncComponent(() =>
+      import('./components/public/'+component+'/'+component)
+  )
+}
 const RouteConfig = (
     <Router>
-      <div>
+      <Switch>
         <Route exact path="/" component={App}/>
-      </div>
+        <Route path="/index" component={getAsyncComponent('a')}/>
+        <Route path="/hhh" component={getAsyncComponent('b')}/>
+      </Switch>
     </Router>
 );
 export default RouteConfig;
