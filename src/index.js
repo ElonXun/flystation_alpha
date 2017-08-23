@@ -6,6 +6,13 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import route from './router';
 import registerServiceWorker from './registerServiceWorker';
+import { Map } from 'immutable';
+import data from './data';
+
+const initialState = {
+  blogTypeVisibilityFilter:'SHOW_ALL_BLOG',
+  blogs:data.data,
+}
 
 const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 

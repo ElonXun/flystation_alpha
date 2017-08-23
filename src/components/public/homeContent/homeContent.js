@@ -11,7 +11,8 @@ const article = {
   blogThumbnail: 'http://flystation.image.alimmdn.com/blog/blogBackground/tencentBlog.jpg',
 };
 
-const Homepage = ({ params, blogs }) => {
+const Homepage = ({  blogs }) => {
+  console.log('子组件里的 homepage  render')
   return (
     <div>
       <div className={styles.container}>

@@ -29,6 +29,7 @@ class navigator extends React.Component {
     });
   }
   render() {
+    console.log('子组件里的 navigator render')
     return (
       <Layout>
         <Header className={styles.header}>
