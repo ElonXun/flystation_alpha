@@ -10,8 +10,15 @@ class home extends React.Component{
 
   constructor(props) {
     super(props);
+    this.state = {
+      data:this.props.blogs
+    }
   }
 
+  componentWillReceiveProps(newProps) {
+    console.log(newProps)
+    console.log('Component WILL RECEIVE PROPS!')
+  }
   /*shouldComponentUpdate(nextProps, nextState) {
     const thisProps = this.props || {};
     const thisState = this.state || {};

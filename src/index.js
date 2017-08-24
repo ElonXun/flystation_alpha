@@ -9,12 +9,12 @@ import registerServiceWorker from './registerServiceWorker';
 import { Map } from 'immutable';
 import data from './data';
 
-const initialState = {
+const preloadedState = {
   blogTypeVisibilityFilter:'SHOW_ALL_BLOG',
   blogs:data.data,
 }
 
-const store = createStore(reducer,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+const store = createStore(reducer,preloadedState,window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
 
 // const root = ()=>{
 //   return(
