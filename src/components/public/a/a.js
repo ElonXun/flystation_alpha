@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Navigator from '../../../containers/filterNavigator';
+import Navigator from '../navigator/navigator';
 import BlogContent from '../blogContent';
 import { Layout, Menu, Icon, Row, Col, Avatar } from 'antd';
 import styles from './a.css';
@@ -20,7 +20,7 @@ class a extends React.Component {
   render() {
     return (
         <div>
-           <Navigator/>
+           <Navigator noBlogFilter={true} {...this.props}/>
           <Row>
             <Col xs={0} md={6} />
             <Col xs={24} md={12}>

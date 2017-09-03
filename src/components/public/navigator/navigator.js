@@ -42,18 +42,27 @@ class navigator extends React.Component {
 
   handleClick = (e) => {
     console.log('click ', `${e.key}点击`);
-    switch (e.key) {
-      case 'realStuff': this.props.onclick('SHOW_REALSTUFF');
-        break;
-      case 'note':this.props.onclick('SHOW_NOTE');
-        break;
-      case 'travel':this.props.onclick('SHOW_TRAVEL');
-        break;
-      default:
-        break;
+    // console.log(this.state.data.get('current'),e.key)
+    if(e.key === this.state.data.get('current')){
+      return;
     }
+
     this.setState({
       data:this.state.data.set('current',e.key),
+    },()=>{
+      switch (e.key) {
+        case 'home':
+          this.props.history.push('/');
+          break;
+        case 'realStuff': this.props.onclick('SHOW_REALSTUFF');
+          break;
+        case 'note':this.props.onclick('SHOW_NOTE');
+          break;
+        case 'travel':this.props.onclick('SHOW_TRAVEL');
+          break;
+        default:
+          break;
+      }
     });
   }
   render() {
@@ -78,19 +87,21 @@ class navigator extends React.Component {
                     <Menu.Item key="home">
                       首页
                     </Menu.Item>
-                    <SubMenu
-                      title={
-                        <span>
-                        博客
-                      </span>
+                    {!(this.props.noBlogFilter === true) &&
+                        <SubMenu
+                            title={
+                              <span>
+                            博客
+                          </span>
+                            }
+                        >
+                          <Menu.Item key="realStuff" >
+                            <Icon type="book" id={styles.iconWrap} />干货
+                          </Menu.Item>
+                          <Menu.Item key="note"><Icon type="compass" id={styles.iconWrap} />杂记</Menu.Item>
+                          <Menu.Item key="travel"><Icon type="flag" id={styles.iconWrap} />游记</Menu.Item>
+                        </SubMenu>
                     }
-                    >
-                      <Menu.Item key="realStuff" >
-                        <Icon type="book" id={styles.iconWrap} />干货
-                      </Menu.Item>
-                      <Menu.Item key="note"><Icon type="compass" id={styles.iconWrap} />杂记</Menu.Item>
-                      <Menu.Item key="travel"><Icon type="flag" id={styles.iconWrap} />游记</Menu.Item>
-                    </SubMenu>
                     <Menu.Item key="alipay">
                       关于
                     </Menu.Item>
