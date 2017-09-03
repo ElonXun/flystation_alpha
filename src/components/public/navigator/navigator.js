@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './navigator.css';
 import { Layout, Menu, Icon, Row, Col } from 'antd';
+import { is,Map } from 'immutable';
+
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -9,9 +11,35 @@ class navigator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 'mail',
+      data:Map({current: this.props.currentTag}),
     };
   }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const thisProps = this.props || {};
+    const thisState = this.state || {};
+    nextState = nextState || {};
+    nextProps = nextProps || {};
+
+    if (Object.keys(thisProps).length !== Object.keys(nextProps).length ||
+        Object.keys(thisState).length !== Object.keys(nextState).length) {
+      return true;
+    }
+
+    for (const key in nextProps) {
+      if (!is(thisProps[key], nextProps[key])) {
+        return true;
+      }
+    }
+
+    for (const key in nextState) {
+      if (!is(thisState[key], nextState[key])) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   handleClick = (e) => {
     console.log('click ', `${e.key}点击`);
     switch (e.key) {
@@ -25,7 +53,7 @@ class navigator extends React.Component {
         break;
     }
     this.setState({
-      current: e.key,
+      data:this.state.data.set('current',e.key),
     });
   }
   render() {
@@ -43,11 +71,11 @@ class navigator extends React.Component {
                 <div className={styles.rightNavigator}>
                   <Menu
                     onClick={this.handleClick}
-                    selectedKeys={[this.state.current]}
+                    selectedKeys={[this.state.data.get('current')]}
                     mode="horizontal"
                     style={{ lineHeight: '48px' }}
                   >
-                    <Menu.Item key="mail">
+                    <Menu.Item key="home">
                       首页
                     </Menu.Item>
                     <SubMenu

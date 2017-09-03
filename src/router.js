@@ -24,7 +24,7 @@ const RouteConfig = (
     <Router>
       <Switch>
         <Route exact path="/" component={App}/>
-        <Route path="/index" component={getAsyncComponent('a')}/>
+        <Route path="/blogs" component={getAsyncComponent('a')}/>
         <Route path="/hhh" component={getAsyncComponent('b')}/>
       </Switch>
     </Router>

@@ -1,6 +1,5 @@
 import { combineReducers } from 'redux';
 // import { combineReducers } from 'redux-immutable';
-import { Map } from 'immutable';
 import blogTypeVisibilityFilter from './blogTypeVisibilityFilter';
 
 

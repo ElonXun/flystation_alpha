@@ -1,0 +1,32 @@
+.blogTitle{
+    font-size: 34px;
+    font-weight: 700;
+}
+
+.blogWrap{
+    margin-top: 48px;
+    width: 660px;
+}
+
+.blogTitleContainer{
+
+}
+
+.avatar{
+    display: flex;
+    align-items: center;
+    margin-top: 16px;
+}
+
+.avatarText{
+    margin-left: 16px;
+    margin-right: 4px;
+}
+
+.blogCreateTime{
+    margin-left: 4px;
+}
+
+.blogContent{
+    margin-top: 16px;
+}

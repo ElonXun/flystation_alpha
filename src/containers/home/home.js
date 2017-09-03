@@ -16,7 +16,6 @@ class home extends React.Component{
   }
 
   componentWillReceiveProps(newProps) {
-    console.log(newProps)
     console.log('Component WILL RECEIVE PROPS!')
   }
   /*shouldComponentUpdate(nextProps, nextState) {
@@ -48,7 +47,7 @@ class home extends React.Component{
     console.log('父组件 home  render ')
     return(
        <div>
-         <Navigator onclick={this.props.onclick}/>
+         <Navigator onclick={this.props.onclick} currentTag={'home'}/>
          <HomeContent blogs={this.props.blogs}/>
        </div>
     )
