@@ -47,7 +47,7 @@ class home extends React.Component{
     console.log('父组件 home  render ')
     return(
        <div>
-         <Navigator onclick={this.props.onclick} currentTag={'home'}/>
+         <Navigator onclick={this.props.onclick} currentTag={'home'} {...this.props}/>
          <HomeContent blogs={this.props.blogs}/>
        </div>
     )

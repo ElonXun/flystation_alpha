@@ -46,13 +46,16 @@ class navigator extends React.Component {
     if(e.key === this.state.data.get('current')){
       return;
     }
-
     this.setState({
       data:this.state.data.set('current',e.key),
     },()=>{
       switch (e.key) {
         case 'home':
-          this.props.history.push('/');
+          if(this.props.location.pathname.indexOf('blogs') > 0){
+            this.props.history.push('/');
+          }else{
+            this.props.onclick('SHOW_ALL_BLOG');
+          }
           break;
         case 'realStuff': this.props.onclick('SHOW_REALSTUFF');
           break;
