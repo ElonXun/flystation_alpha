@@ -20,13 +20,13 @@ class a extends React.Component {
   render() {
     return (
         <div>
-           <Navigator noBlogFilter={true} {...this.props}/>
-          <Row>
-            <Col xs={0} md={6} />
+          <Navigator noBlogFilter={true} {...this.props}/>
+          <Row className={styles.blogWrap}>
+            <Col xs={0} md={6}/>
             <Col xs={24} md={12}>
               <BlogContent/>
             </Col>
-            <Col xs={0} md={6} />
+            <Col xs={0} md={6}/>
           </Row>
         </div>
     )

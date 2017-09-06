@@ -3,6 +3,7 @@ import Navigator from '../../components/public/navigator/navigator';
 import HomeContent from '../../components/public/homeContent/homeContent';
 import { connect } from 'react-redux';
 import { blogTypeVisibilityFilter } from '../../actions/index';
+import AsyncFetch from '../../utils/common';
 import { is } from 'immutable';
 
 
@@ -15,8 +16,19 @@ class home extends React.Component{
     }
   }
 
+  componentDidMount(){
+    console.log('begin fetch api')
+
+    AsyncFetch('get','http://localhost:3001/json').then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.error(err);
+    });
+  }
+
   componentWillReceiveProps(newProps) {
     console.log('Component WILL RECEIVE PROPS!')
+
   }
   /*shouldComponentUpdate(nextProps, nextState) {
     const thisProps = this.props || {};
