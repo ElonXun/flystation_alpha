@@ -6,7 +6,6 @@ import styles from './a.css';
 
 class a extends React.Component {
 
-
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +23,7 @@ class a extends React.Component {
           <Row className={styles.blogWrap}>
             <Col xs={0} md={6}/>
             <Col xs={24} md={12}>
-              <BlogContent/>
+              <BlogContent blogDetails={'blogDetails'}/>
             </Col>
             <Col xs={0} md={6}/>
           </Row>

@@ -1,6 +1,6 @@
 // state = 'SHOW_ALL_BLOG'
 
-const blogTypeVisibilityFilter = (state=[], action)=>{
+const blogTypeVisibilityFilter = (state='SHOW_ALL_BLOG', action)=>{
   switch (action.type) {
     case 'BLOG_TYPE_VISIBILITY_FILTER':
       return action.filter

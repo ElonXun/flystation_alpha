@@ -2,7 +2,7 @@ import React from 'react';
 import Navigator from '../../components/public/navigator/navigator';
 import HomeContent from '../../components/public/homeContent/homeContent';
 import { connect } from 'react-redux';
-import { blogTypeVisibilityFilter } from '../../actions/index';
+import { blogTypeVisibilityFilter,getBlogs } from '../../actions/index';
 import AsyncFetch from '../../utils/common';
 import { is } from 'immutable';
 
@@ -15,15 +15,13 @@ class home extends React.Component{
       data:this.props.blogs
     }
   }
+  componentWillMount(){
+    console.log('begin fetch api')
+    this.props.getBlogs('http://localhost:3001/api/query')
+  }
 
   componentDidMount(){
-    console.log('begin fetch api')
 
-    AsyncFetch('get','http://localhost:3001/json').then((res) => {
-      console.log(res);
-    }).catch((err) => {
-      console.error(err);
-    });
   }
 
   componentWillReceiveProps(newProps) {
@@ -71,11 +69,11 @@ const getVisibleBlogs = (blogs, filter) => {
     case 'SHOW_ALL_BLOG':
       return blogs
     case 'SHOW_REALSTUFF':
-      return blogs.filter(t => t.blogType === 0)
+      return blogs.filter(t => t.blogTape === 0)
     case 'SHOW_NOTE':
-      return blogs.filter(t => t.blogType === 1)
+      return blogs.filter(t => t.blogTape === 1)
     case 'SHOW_TRAVEL':
-      return blogs.filter(t => t.blogType === 2)
+      return blogs.filter(t => t.blogTape === 2)
     default:
       throw new Error('Unknown filter: ' + filter)
   }
@@ -88,6 +86,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onclick: (filter)=> {
     dispatch(blogTypeVisibilityFilter(filter))
+  },
+  getBlogs:(url)=>{
+    dispatch(getBlogs(url))
   }
 })
 

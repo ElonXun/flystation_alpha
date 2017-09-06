@@ -4,13 +4,6 @@ import { Tag, Row, Col } from 'antd';
 import RightNavHeader from '../rightNavHeader/navHeader.js';
 import ArticleSelect from '../articleSelect/articleSelect';
 
-const article = {
-  blogTitle: '腾讯传评',
-  createTime: '2017-01-23 14:35:31',
-  blogReadNum: '234',
-  blogThumbnail: 'http://flystation.image.alimmdn.com/blog/blogBackground/tencentBlog.jpg',
-};
-
 const Homepage = ({  blogs }) => {
   console.log('子组件里的 homepage  render')
   return (
@@ -23,7 +16,6 @@ const Homepage = ({  blogs }) => {
               <Row gutter={16}>
                 <Col span={16}>
                   <div className={styles.wrap}>
-                    <ArticleSelect article={article} />
                     {
                       blogs.map((val, index) => {
                         return (<ArticleSelect key={index} article={val} />);

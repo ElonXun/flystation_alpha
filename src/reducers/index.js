@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 // import { combineReducers } from 'redux-immutable';
 import blogTypeVisibilityFilter from './blogTypeVisibilityFilter';
-
+import blogs from './blogs';
 
 
 // const initState = Map(data.data)
 
-const blogs = (state=[] ,action)=>{
-  return state
-}
+// const blogs = (state=[] ,action)=>{
+//   return state
+// }
 
 // const todoBlog = (state,action)=>{
 //   return{
