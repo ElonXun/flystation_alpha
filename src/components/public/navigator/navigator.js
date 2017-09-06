@@ -51,7 +51,7 @@ class navigator extends React.Component {
     },()=>{
       switch (e.key) {
         case 'home':
-          if(this.props.location.pathname.indexOf('blogs') > 0){
+          if(this.props.location.pathname.indexOf('blog') > 0){
             this.props.history.push('/');
           }else{
             this.props.onclick('SHOW_ALL_BLOG');

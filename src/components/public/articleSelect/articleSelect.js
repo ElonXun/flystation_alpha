@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './articleSelect.css';
+import moment from 'moment';
 
 const articleSelect = ({ article,history,match }) => {
 
@@ -15,7 +16,7 @@ const articleSelect = ({ article,history,match }) => {
               // },
             })
           }}>{article.blogTitle}</p>
-          <p className={styles.subTitle}>{article.createAt}
+          <p className={styles.subTitle}>{moment(article.createAt).format('YYYY-MM-DD HH:mm:ss')}
             <span style={{marginRight:'4px'}}/>阅读量:{article.blogReview}{article.blogTape}
           </p>
         </div>

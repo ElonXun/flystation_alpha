@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './blogContent.css';
 import { Avatar } from 'antd';
+import moment from 'moment';
 
 
 const articleSelect = ({ blogDetails }) => {
@@ -13,7 +14,7 @@ const articleSelect = ({ blogDetails }) => {
           <Avatar size="large" icon="user" />
           <span className={styles.avatarText}>潘小闲也</span>
           <span>·</span>
-          <span className={styles.blogCreateTime}>{blogDetails.createAt}</span>
+          <span className={styles.blogCreateTime}>{moment(blogDetails.createAt).format('YYYY-MM-DD HH:mm:ss')}</span>
         </div>
         <div className={styles.blogContent}>
            <div dangerouslySetInnerHTML={{__html:blogDetails.blogContent}}/>
