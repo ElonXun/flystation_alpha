@@ -36,6 +36,7 @@
   font-size: 30px;
   font-weight: bold;
   word-wrap: break-word;
+  cursor: pointer;
 }
 
 .subTitle {

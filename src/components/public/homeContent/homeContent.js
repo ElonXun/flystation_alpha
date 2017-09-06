@@ -4,7 +4,7 @@ import { Tag, Row, Col } from 'antd';
 import RightNavHeader from '../rightNavHeader/navHeader.js';
 import ArticleSelect from '../articleSelect/articleSelect';
 
-const Homepage = ({  blogs }) => {
+const Homepage = ({  blogs,history,match }) => {
   console.log('子组件里的 homepage  render')
   return (
     <div>
@@ -18,7 +18,7 @@ const Homepage = ({  blogs }) => {
                   <div className={styles.wrap}>
                     {
                       blogs.map((val, index) => {
-                        return (<ArticleSelect key={index} article={val} />);
+                        return (<ArticleSelect key={index} article={val} history={history} match={match}/>);
                       })
                     }
                   </div>

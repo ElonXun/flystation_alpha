@@ -58,7 +58,7 @@ class home extends React.Component{
     return(
        <div>
          <Navigator onclick={this.props.onclick} currentTag={'home'} {...this.props}/>
-         <HomeContent blogs={this.props.blogs}/>
+         <HomeContent blogs={this.props.blogs} {...this.props}/>
        </div>
     )
   }
