@@ -10,21 +10,15 @@ import ReduxThunk from 'redux-thunk';
 import { Map } from 'immutable';
 import data from './data';
 
-const preloadedState = {
+/*const preloadedState = {
   blogTypeVisibilityFilter:'SHOW_ALL_BLOG',
   // blogs:data.data,
   blogs:{},
-}
+}*/
 
 const store = createStore(reducer,compose(applyMiddleware(ReduxThunk),window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()))
 
-// const root = ()=>{
-//   return(
-//       <Provider store={store}>
-//         {route}
-//       </Provider>
-//   );
-// }
+
 ReactDOM.render(
     <Provider store={store}>
       {route}

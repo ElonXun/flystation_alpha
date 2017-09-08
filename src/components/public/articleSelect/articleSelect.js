@@ -11,9 +11,6 @@ const articleSelect = ({ article,history,match }) => {
           <p className={styles.title} onClick={()=>{
             history.push({
               pathname: `${match.url}`+'blog/'+article._id,
-              // query:{
-              //   blogId:article._id,
-              // },
             })
           }}>{article.blogTitle}</p>
           <p className={styles.subTitle}>{moment(article.createAt).format('YYYY-MM-DD HH:mm:ss')}

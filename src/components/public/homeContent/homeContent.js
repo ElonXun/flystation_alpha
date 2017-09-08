@@ -5,7 +5,7 @@ import RightNavHeader from '../rightNavHeader/navHeader.js';
 import ArticleSelect from '../articleSelect/articleSelect';
 
 const Homepage = ({  blogs,history,match }) => {
-  console.log('子组件里的 homepage  render')
+  // console.log('子组件里的 homepage  render')
   return (
     <div>
       <div className={styles.container}>

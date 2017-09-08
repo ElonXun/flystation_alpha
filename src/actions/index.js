@@ -21,7 +21,7 @@ export const getBlogs = (url) =>(dispatch) => {
   //   console.log('error: ', error)
   // }
   return AsyncFetch('get',url).then((json)=>{
-    console.log(json.data.blogs)
+    // console.log(json.data.blogs)
     return dispatch(saveBlogs(json.data.blogs))
   })
 }

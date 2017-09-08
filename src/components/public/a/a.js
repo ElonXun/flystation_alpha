@@ -4,6 +4,8 @@ import BlogContent from '../blogContent';
 import { Layout, Menu, Icon, Row, Col, Avatar } from 'antd';
 import AsnycFetch from '../../../utils/common';
 import styles from './a.css';
+import {HOST} from '../../../utils/config';
+
 
 // var blogDetails = {}
 
@@ -17,7 +19,7 @@ class a extends React.Component {
   }
 
   componentWillMount(){
-    AsnycFetch('post','http://localhost:3001/api/blogDetails',{blogId:this.props.match.params.id})
+    AsnycFetch('post',HOST+'/api/blogDetails',{blogId:this.props.match.params.id})
         .then((res)=>{
           this.setState({
             blogDetails:res.data.blogDetails

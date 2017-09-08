@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { blogTypeVisibilityFilter,getBlogs } from '../../actions/index';
 import AsyncFetch from '../../utils/common';
 import { is } from 'immutable';
-
+import {HOST} from '../../utils/config';
 
 class home extends React.Component{
 
@@ -16,8 +16,8 @@ class home extends React.Component{
     }
   }
   componentWillMount(){
-    console.log('begin fetch api')
-    this.props.getBlogs('http://localhost:3001/api/query')
+    //HOST => localhost
+    this.props.getBlogs(HOST+'/api/query')
   }
 
   componentDidMount(){
@@ -25,7 +25,7 @@ class home extends React.Component{
   }
 
   componentWillReceiveProps(newProps) {
-    console.log('Component WILL RECEIVE PROPS!')
+    // console.log('Component WILL RECEIVE PROPS!')
 
   }
   /*shouldComponentUpdate(nextProps, nextState) {
@@ -54,7 +54,7 @@ class home extends React.Component{
   }*/
 
   render(){
-    console.log('父组件 home  render ')
+    // console.log('父组件 home  render ')
     return(
        <div>
          <Navigator onclick={this.props.onclick} currentTag={'home'} {...this.props}/>

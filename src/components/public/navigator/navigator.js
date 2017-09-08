@@ -41,7 +41,7 @@ class navigator extends React.Component {
   }
 
   handleClick = (e) => {
-    console.log('click ', `${e.key}点击`);
+    // console.log('click ', `${e.key}点击`);
     // console.log(this.state.data.get('current'),e.key)
     if(e.key === this.state.data.get('current')){
       return;
@@ -69,7 +69,7 @@ class navigator extends React.Component {
     });
   }
   render() {
-    console.log('子组件里的 navigator render')
+    // console.log('子组件里的 navigator render')
     return (
       <Layout>
         <Header className={styles.header}>
