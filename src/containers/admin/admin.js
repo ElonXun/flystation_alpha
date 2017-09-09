@@ -25,6 +25,20 @@ class admin extends React.Component {
     });
   }
 
+  handleCick =(e)=>{
+    switch(e.key){
+      case '1' :
+        this.props.history.push(`${this.props.match.url}`+'/addBlog');
+        break;
+      case '2':
+        break;
+      case '3':
+        break;
+      default:
+        break;
+    }
+  }
+
   render() {
     return (
         <div style={{height:'100%'}}>
@@ -35,7 +49,10 @@ class admin extends React.Component {
                 collapsed={this.state.collapsed}
             >
               <div className={styles.logo} />
-              <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+              <Menu theme="dark"
+                    mode="inline"
+                    defaultSelectedKeys={['1']}
+                    onClick={this.handleCick}>
                 <Menu.Item key="1">
                   <Icon type="user" />
                   <span>发布博客</span>
