@@ -42,7 +42,7 @@ class admin extends React.Component {
   render() {
     return (
         <div style={{height:'100%'}}>
-          <Layout style={{height:'100%'}}>
+          <Layout style={{height:'auto'}}>
             <Sider
                 trigger={null}
                 collapsible
@@ -75,7 +75,7 @@ class admin extends React.Component {
                     onClick={this.toggle}
                 />
               </Header>
-              <Content style={{ margin: '24px 16px', background: '#fff', minHeight: 280 }}>
+              <Content style={{ margin: '24px 16px', background: '#fff', height: 'auto' }}>
                 <Route path={`${this.props.match.url}`+'/addBlog'} component={AddBlog}/>
               </Content>
             </Layout>

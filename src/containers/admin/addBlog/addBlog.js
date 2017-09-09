@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './addBlog.css';
 import { Col,Row,Form,Input,Select,Upload,Modal,Icon, Tag, Tooltip, Button } from 'antd';
+import E from 'wangeditor'
 const FormItem = Form.Item;
 const Option = Select.Option;
 
@@ -131,17 +132,30 @@ class addBlog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      blogDetails:{}
-    }
+    this.state = ({
+      editorContent: '',
+    })
   }
+
+
 
   componentWillMount(){
   }
 
-  componentDidMount(){
-    // console.log(this.props.location.pathname)
-    // console.log(this.props.match.params.id)
+  componentDidMount() {
+    const elem = this.refs.editorElem
+    const editor = new E(elem)
+    // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
+    editor.customConfig.onchange = html => {
+      this.setState({
+        editorContent: html
+      })
+    }
+    editor.create()
+  }
+
+  clickHandle() {
+    alert(this.state.editorContent)
   }
 
   render() {
@@ -183,7 +197,10 @@ class addBlog extends React.Component {
                           labelCol={{span: 3}}
                           wrapperCol={{span: 21}}
                           colon={false}>
-                    <div>conten</div>
+                  {/* 将生成编辑器 */}
+                  <div ref="editorElem" style={{textAlign: 'left'}}>
+                  </div>
+                  <button onClick={this.clickHandle.bind(this)}>获取内容</button>
                 </FormItem>
               </Form>
             </Col>
