@@ -1,6 +1,8 @@
 
 
 
+
+
 const asyncFetch = (method, url, data) => {
   let request;
   if (method === 'get') {
@@ -21,5 +23,8 @@ const asyncFetch = (method, url, data) => {
   }
   return fetch(request).then((response) => response.json())
 }
+
+
+
 
 export default asyncFetch

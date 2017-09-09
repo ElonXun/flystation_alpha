@@ -15,6 +15,9 @@ const Home = asyncComponent(() =>
     import('./containers/home/home')
 )
 
+const Admin = asyncComponent(() =>
+    import('./containers/admin/admin')
+)
 const getAsyncComponent = (component)=>{
   return asyncComponent(() =>
       import('./components/public/'+component+'/'+component)
@@ -25,7 +28,7 @@ const RouteConfig = (
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/blog/:id" component={getAsyncComponent('a')}/>
-        <Route path="/hhh" component={getAsyncComponent('b')}/>
+        <Route path="/admin" component={Admin}/>
       </Switch>
     </Router>
 );
