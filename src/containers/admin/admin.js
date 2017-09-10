@@ -42,7 +42,7 @@ class admin extends React.Component {
   render() {
     return (
         <div style={{height:'100%'}}>
-          <Layout style={{height:'auto'}}>
+          <Layout style={{height:'auto',minHeight: '100%'}}>
             <Sider
                 trigger={null}
                 collapsible
