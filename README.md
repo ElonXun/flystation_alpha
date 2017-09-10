@@ -1,5 +1,5 @@
 ## flystation 
-   该开源博客 基于react技术栈,目前为alpha版,只要一些初步功能
+   该开源博客 基于react技术栈,目前为alpha版,只有一些初步功能
    
    该项目由create-react-app脚手架创建
    
