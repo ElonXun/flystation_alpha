@@ -145,6 +145,7 @@ class addBlog extends React.Component {
   componentDidMount() {
     const elem = this.refs.editorElem
     const editor = new E(elem)
+    editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
       this.setState({
