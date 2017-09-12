@@ -198,7 +198,6 @@ class addBlog extends React.Component {
                           labelCol={{span: 3}}
                           wrapperCol={{span: 21}}
                           colon={false}>
-                  {/* 将生成编辑器 */}
                   <div ref="editorElem" style={{textAlign: 'left'}}>
                   </div>
                   <button onClick={this.clickHandle.bind(this)}>获取内容</button>
