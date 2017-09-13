@@ -19,7 +19,7 @@ class a extends React.Component {
   }
 
   componentWillMount(){
-    AsnycFetch('post',HOST+'/api/blogDetails',{blogId:this.props.match.params.id})
+    AsnycFetch('post',HOST+'api/blogDetails',{blogId:this.props.match.params.id})
         .then((res)=>{
           this.setState({
             blogDetails:res.data.blogDetails

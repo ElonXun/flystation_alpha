@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styles from './addBlog.css';
 import { Col,Row,Form,Input,Select,Upload,Modal,Icon, Tag, Tooltip, Button } from 'antd';
+import {uploadPicture} from '../../../utils/common';
 import E from 'wangeditor'
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -145,12 +146,39 @@ class addBlog extends React.Component {
   componentDidMount() {
     const elem = this.refs.editorElem
     const editor = new E(elem)
+    // 通过 url 参数配置 debug 模式。url 中带有 wangeditor_debug_mode=1 才会开启 debug 模式
+    editor.customConfig.debug = 1;
     editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
       this.setState({
         editorContent: html
       })
+    }
+
+    editor.customConfig.customUploadImg = function (files, insert) {
+      // files 是 input 中选中的文件列表
+      // insert 是获取图片 url 后，插入到编辑器的方法
+
+      // 上传代码返回结果之后，将图片插入到编辑器中
+      // insert(imgUrl)
+      let file = files[0]
+      uploadPicture(file)
+     /* ossUpload(file,(dir)=>{
+        let api = PART.YOUDU + CLASSIFY.USER + 'get_url?';
+        let data = {
+          user_id:1741600001,
+          img:dir+file.name,
+          debug:1
+        }
+        asyncFetch('get',api,data).then((response) => {
+          insert(response.data.img)
+        })
+      })*/
+
+
+
+
     }
     editor.create()
   }

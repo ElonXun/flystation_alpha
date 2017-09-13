@@ -17,7 +17,7 @@ class home extends React.Component{
   }
   componentWillMount(){
     //HOST => localhost
-    this.props.getBlogs(HOST+'/api/query')
+    this.props.getBlogs(HOST+'api/query')
   }
 
   componentDidMount(){
