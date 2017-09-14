@@ -37,7 +37,7 @@ const singleUpload = (token,file,size,dir,fileName)=>{
 }
 
 
-const asyncFetch = (method, url, data) => {
+export const asyncFetch = (method, url, data) => {
   let request;
   if (method === 'get') {
     request = new Request(url, {
