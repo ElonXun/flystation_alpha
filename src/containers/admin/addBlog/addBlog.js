@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './addBlog.css';
 import { Col,Row,Form,Input,Select,Upload,Modal,Icon, Tag, Tooltip, Button } from 'antd';
-import {uploadPicture,asyncFetch} from '../../../utils/common';
+import {uploadPicture} from '../../../utils/common';
 import E from 'wangeditor'
 const FormItem = Form.Item;
 const Option = Select.Option;
@@ -164,49 +164,10 @@ class addBlog extends React.Component {
       // insert(imgUrl)
       let file = files[0]
       //七牛上传测试
-      let url = 'http://localhost:3001/'
-      let api = 'test/getqiniu'
-      asyncFetch('get',url+api).then((res)=>{
-        return res.data.qiniuToken
-      }).then((token)=>{
-        const formData = new FormData()
-        formData.append('token', token)
-        // formData.append('key', file.name)
-        formData.append('file',file)
-        
-        var uri = 'http://upload.qiniu.com'
-        return fetch(uri, {
-          method: 'post',
-          'Content-Type': 'multipart/form-data; boundary=zcV4qZ1R8f7jaG7hzVlZ_RL9oOdIZWv9tUCoKq',
-          body: formData,
-        }).then((response)=> response.json())
-      }).then((response)=>{
-        console.log(response)
+
+      uploadPicture(file,(url)=>{
+        insert(url)
       })
-
-
-
-
-
-
-
-
-      // uploadPicture(file)
-     /* ossUpload(file,(dir)=>{
-        let api = PART.YOUDU + CLASSIFY.USER + 'get_url?';
-        let data = {
-          user_id:1741600001,
-          img:dir+file.name,
-          debug:1
-        }
-        asyncFetch('get',api,data).then((response) => {
-          insert(response.data.img)
-        })
-      })*/
-
-
-
-
     }
     editor.create()
   }
