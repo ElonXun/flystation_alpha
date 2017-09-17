@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styles from './editBlog.css';
 import AsyncFetch from '../../../utils/common';
-import { Col,Row,Form, Button, Table, Icon } from 'antd';
+import { Col,Row,Form, Button, Table, Icon, Modal } from 'antd';
 import { HOST } from '../../../utils/config';
 
 
@@ -31,7 +31,9 @@ class editBlog extends React.Component {
   constructor(props) {
     super(props);
     this.state = ({
-      blogData:[]
+      blogData:[],
+      previewImage:'',
+      previewVisible:false,
     })
   }
 
@@ -47,6 +49,8 @@ class editBlog extends React.Component {
     })
   }
 
+  handleCancel = () => this.setState({ previewVisible: false })
+
   columns = [{
     title: '博客标题',
     dataIndex: 'blogTitle',
@@ -56,6 +60,10 @@ class editBlog extends React.Component {
     title: '博客头图',
     dataIndex: 'blogPicture',
     key: 'blogPicture',
+    render: src => <img src={src}
+                        width={50}
+                        height={50}
+                        onClick={()=>{this.setState({ previewImage:src,previewVisible: true,})}}/>
   }, {
     title: '是否置顶',
     dataIndex: 'isTop',
@@ -80,6 +88,9 @@ class editBlog extends React.Component {
     return (
         <div>
           <Table columns={this.columns} dataSource={this.state.blogData} />
+          <Modal visible={this.state.previewVisible} footer={null} onCancel={this.handleCancel}>
+            <img alt="example" style={{ width: '100%' }} src={this.state.previewImage} />
+          </Modal>
         </div>
     )
   }
