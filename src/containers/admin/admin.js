@@ -9,6 +9,9 @@ const { Header, Sider, Content } = Layout;
 const AddBlog = asyncComponent(() =>
     import('./addBlog/addBlog')
 )
+const EditBlog = asyncComponent(() =>
+    import('./editBlog/editBlog')
+)
 
 class admin extends React.Component {
 
@@ -31,6 +34,7 @@ class admin extends React.Component {
         this.props.history.push(`${this.props.match.url}`+'/addBlog');
         break;
       case '2':
+        this.props.history.push(`${this.props.match.url}`+'/editBlog');
         break;
       case '3':
         break;
@@ -77,6 +81,7 @@ class admin extends React.Component {
               </Header>
               <Content style={{ margin: '24px 16px', background: '#fff', height: 'auto' }}>
                 <Route path={`${this.props.match.url}`+'/addBlog'} component={AddBlog}/>
+                <Route path={`${this.props.match.url}`+'/editBlog'} component={EditBlog}/>
               </Content>
             </Layout>
           </Layout>
