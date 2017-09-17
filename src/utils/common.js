@@ -34,14 +34,14 @@ export const getImageName = (filename,type) =>{
 }
 
 //简单文件上传
-export const uploadPicture = (file,successCallBack)=>{
+export const uploadPicture = (file,pathType,successCallBack)=>{
   let url = HOST + 'test/getqiniu'
   asyncFetch('get',url).then((res)=>{
     return res.data.qiniuToken
   }).then((token)=>{
     const formData = new FormData()
     formData.append('token', token)
-    formData.append('key', getImageName(file.name,0))
+    formData.append('key', getImageName(file.name,pathType))
     formData.append('file',file)
 
     var uri = 'http://upload.qiniu.com'

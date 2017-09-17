@@ -29,6 +29,22 @@ class PicturesWall extends React.Component {
 
   handleChange = ({ fileList }) => this.setState({ fileList })
 
+  uploadQiniu = (res)=>{
+    uploadPicture(res.file,1,(url)=>{
+      let fileList = [
+        {
+          uid: res.file.uid,
+          name: res.file.name,
+          status: 'done',
+          url: url,
+        }
+      ]
+       this.setState({
+         fileList:fileList,
+       })
+    })
+  }
+
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
@@ -40,11 +56,12 @@ class PicturesWall extends React.Component {
     return (
         <div className="clearfix">
           <Upload
-              action="//jsonplaceholder.typicode.com/posts/"
+              // action="//jsonplaceholder.typicode.com/posts/"
               listType="picture-card"
               fileList={fileList}
               onPreview={this.handlePreview}
               onChange={this.handleChange}
+              customRequest={this.uploadQiniu}
           >
             {fileList.length >= 1 ? null : uploadButton}
           </Upload>
@@ -149,6 +166,7 @@ class addBlog extends React.Component {
     // 通过 url 参数配置 debug 模式。url 中带有 wangeditor_debug_mode=1 才会开启 debug 模式
     editor.customConfig.debug = 1;
     editor.customConfig.uploadImgServer = '/upload'  // 上传图片到服务器
+    editor.customConfig.zIndex = 0
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
       this.setState({
@@ -164,8 +182,7 @@ class addBlog extends React.Component {
       // insert(imgUrl)
       let file = files[0]
       //七牛上传测试
-
-      uploadPicture(file,(url)=>{
+      uploadPicture(file,0,(url)=>{
         insert(url)
       })
     }
