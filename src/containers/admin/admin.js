@@ -13,6 +13,10 @@ const EditBlog = asyncComponent(() =>
     import('./editBlog/editBlog')
 )
 
+const SaveDetails =  asyncComponent(() =>
+    import('./saveDetails/saveDetails')
+)
+
 class admin extends React.Component {
 
   constructor(props){
@@ -82,6 +86,7 @@ class admin extends React.Component {
               <Content style={{ margin: '24px 16px', background: '#fff', height: 'auto' }}>
                 <Route path={`${this.props.match.url}`+'/addBlog'} component={AddBlog}/>
                 <Route path={`${this.props.match.url}`+'/editBlog'} component={EditBlog}/>
+                <Route path={`${this.props.match.url}`+'/saveDetails/:blogId'} component={SaveDetails}/>
               </Content>
             </Layout>
           </Layout>

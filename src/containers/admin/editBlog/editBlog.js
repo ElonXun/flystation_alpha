@@ -6,28 +6,6 @@ import { HOST } from '../../../utils/config';
 
 const Option = Select.Option;
 
-
-// const data = [{
-//   key: '1',
-//   name: 'John Brown',
-//   age: 32,
-//   address: 'New York No. 1 Lake Park',
-// }, {
-//   key: '2',
-//   name: 'Jim Green',
-//   age: 42,
-//   address: 'London No. 1 Lake Park',
-// }, {
-//   key: '2',
-//   name: 'Jim Green',
-//   age: 42,
-//   address: 'London No. 1 Lake Park',
-// }, {
-//   key: '3',
-//   name: 'Joe Black',
-//   age: 32,
-//   address: 'Sidney No. 1 Lake Park',
-// }];
 class editBlog extends React.Component {
 
   constructor(props) {
@@ -71,9 +49,9 @@ class editBlog extends React.Component {
     dataIndex: 'isTop',
     key: 'isTop',
     render:(isTop)=>(
-        <Select defaultValue={isTop} style={{ width: 80 }}>
-           <Option value={0}>不置顶</Option>
-           <Option value={1}>置顶</Option>
+        <Select defaultValue={isTop.toString()} style={{ width: 80 }}>
+           <Option value={'0'}>不置顶</Option>
+           <Option value={'1'}>置顶</Option>
         </Select>
     ),
   }, {
@@ -89,8 +67,12 @@ class editBlog extends React.Component {
     key: 'set',
     render: (text, record) => (
         <div>
-          <Button>编辑</Button>
-          <Button>删除</Button>
+          <Button type="primary" onClick={()=>{
+            console.log(record)
+            this.props.history.push('/admin/saveDetails/'+record._id)
+
+          }}>编辑</Button>
+          <Button type="danger">删除</Button>
         </div>
     ),
   }]
