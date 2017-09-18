@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import styles from './editBlog.css';
 import AsyncFetch from '../../../utils/common';
-import { Col,Row,Form, Button, Table, Icon, Modal } from 'antd';
+import { Col,Row,Form, Button, Table, Icon, Modal,Tag,Select } from 'antd';
 import { HOST } from '../../../utils/config';
+
+const Option = Select.Option;
 
 
 // const data = [{
@@ -51,7 +53,7 @@ class editBlog extends React.Component {
 
   handleCancel = () => this.setState({ previewVisible: false })
 
-  columns = [{
+  columns=[{
     title: '博客标题',
     dataIndex: 'blogTitle',
     key: 'blogTitle',
@@ -61,17 +63,27 @@ class editBlog extends React.Component {
     dataIndex: 'blogPicture',
     key: 'blogPicture',
     render: src => <img src={src}
-                        width={50}
+                        width={75}
                         height={50}
                         onClick={()=>{this.setState({ previewImage:src,previewVisible: true,})}}/>
   }, {
     title: '是否置顶',
     dataIndex: 'isTop',
     key: 'isTop',
+    render:(isTop)=>(
+        <Select defaultValue={isTop} style={{ width: 80 }}>
+           <Option value={0}>不置顶</Option>
+           <Option value={1}>置顶</Option>
+        </Select>
+    ),
   }, {
     title: '博客类型',
     dataIndex: 'blogTape',
     key: 'blogTape',
+    // width:'80px',
+    render:(blogTape) =>(
+        <Tag color="blue">{blogTape =='0'?'干货':(blogTape=='1'?'杂记':'游记')}</Tag>
+    ),
   }, {
     title: '操作',
     key: 'set',
@@ -81,7 +93,7 @@ class editBlog extends React.Component {
           <Button>删除</Button>
         </div>
     ),
-  }];
+  }]
 
   render() {
     // console.log('拿到了',this.state.blogDetails)
