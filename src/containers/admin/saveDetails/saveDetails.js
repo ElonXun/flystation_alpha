@@ -15,17 +15,17 @@ class PicturesWall extends React.Component {
     this.state = {
       previewVisible: false,
       previewImage: '',
-      fileList: this.props.blogPicture?[{
+      fileList: this.props.cover?[{
         uid: -1,
         name: 'example',
         status: 'done',
-        url: this.props.blogPicture,
+        url: this.props.cover,
       }]:[],
     };
   }
 
   componentDidMount(){
-    console.log(this.props)
+    console.log('did',this.props)
   }
 
   componetWillMount(){
@@ -177,10 +177,7 @@ class saveDetails extends React.Component {
 
 
   componentWillMount(){
-    console.log(this.props.match.params.blogId)
-    this.setState({
-      cover:'111'
-    })
+    // console.log(this.props.match.params.blogId)
 
   }
 
@@ -214,7 +211,7 @@ class saveDetails extends React.Component {
     //博客详情
     asyncFetch('post', HOST + 'api/blogDetails', {blogId: this.props.match.params.blogId})
         .then((res) => {
-          console.log(res)
+          // console.log(res)
           let blogDetails = res.data.blogDetails
 
           editor.txt.html(blogDetails.blogContent)
@@ -267,7 +264,7 @@ class saveDetails extends React.Component {
                           wrapperCol={{span: 21}}
                           colon={false}>
                   {/*{this.state.cover?<img src={this.state.cover}/>:<PicturesWall getUrlCallBack={this.getUrl}/>}*/}
-                  <PicturesWall  src={this.state.cover} getUrlCallBack={this.getUrl}/>
+                  {this.state.cover?<PicturesWall cover={this.state.cover} getUrlCallBack={this.getUrl}/>:null}
                 </FormItem>
                 <FormItem label={<span style={{float: 'left'}}>文章分类:</span>}
                           labelCol={{span: 3}}
