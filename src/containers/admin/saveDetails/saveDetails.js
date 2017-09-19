@@ -25,11 +25,11 @@ class PicturesWall extends React.Component {
   }
 
   componentDidMount(){
-    console.log('did',this.props)
+    // console.log('did',this.props)
   }
 
   componetWillMount(){
-    console.log('will',this.props)
+    // console.log('will',this.props)
   }
 
 
@@ -219,7 +219,7 @@ class saveDetails extends React.Component {
           this.setState({
             blogTitle:blogDetails.blogTitle,
             cover:blogDetails.blogPicture,
-            blogTape:blogDetails.blogTape,
+            blogTape:blogDetails.blogTape.toString(),
             isTop:blogDetails.isTop,
           })
 
@@ -246,7 +246,7 @@ class saveDetails extends React.Component {
   }
 
   render() {
-    // console.log('拿到了',this.state.blogDetails)
+    // console.log('拿到了',this.state.blogTape)
     return (
         <div className={styles.addBlogWrap}>
           <Row>
@@ -263,18 +263,18 @@ class saveDetails extends React.Component {
                           labelCol={{span: 3}}
                           wrapperCol={{span: 21}}
                           colon={false}>
-                  {/*{this.state.cover?<img src={this.state.cover}/>:<PicturesWall getUrlCallBack={this.getUrl}/>}*/}
                   {this.state.cover?<PicturesWall cover={this.state.cover} getUrlCallBack={this.getUrl}/>:null}
                 </FormItem>
                 <FormItem label={<span style={{float: 'left'}}>文章分类:</span>}
                           labelCol={{span: 3}}
                           wrapperCol={{span: 21}}
                           colon={false}>
-                  <Select placeholder="类型" style={{width: '200px', display: 'inline-block'}} size={'default'}>
-                    <Option value="0">干货</Option>
-                    <Option value="1">杂记</Option>
-                    <Option value="2">游记</Option>
-                  </Select>
+                  {this.state.blogTape?<Select placeholder="类型" style={{width: '200px', display: 'inline-block'}} size={'default'}
+                                               defaultValue={this.state.blogTape}>
+                    <Option value={'0'}>干货</Option>
+                    <Option value={'1'}>杂记</Option>
+                    <Option value={'2'}>游记</Option>
+                  </Select>:null}
                 </FormItem>
                 <FormItem label={<span style={{float: 'left'}}>文章标签:</span>}
                           labelCol={{span: 3}}
