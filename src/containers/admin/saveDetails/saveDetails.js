@@ -245,11 +245,15 @@ class saveDetails extends React.Component {
      console.log('pic',url)
   }
 
+  saveBlog=()=>{
+    alert('保存修改')
+  }
+
   render() {
     // console.log('拿到了',this.state.blogTape)
     return (
         <div className={styles.addBlogWrap}>
-          <Row>
+          <Row type={'flex'}>
             <Col span={24}>
               <Form>
                 <FormItem label={<span style={{float: 'left'}}>文章标题:</span>}
@@ -286,9 +290,11 @@ class saveDetails extends React.Component {
                           labelCol={{span: 3}}
                           wrapperCol={{span: 21}}
                           colon={false}>
-                  <div ref="editorElem" style={{textAlign: 'left'}}>
-                  </div>
-                  <button onClick={this.clickHandle.bind(this)}>获取内容</button>
+                  <div ref="editorElem" style={{textAlign: 'left'}}></div>
+                  {/*<button onClick={this.clickHandle.bind(this)}>获取内容</button>*/}
+                </FormItem>
+                <FormItem style={{justifyContent: 'center',display:'flex'}}>
+                  <Button type='primary' onClick={this.saveBlog}>保存</Button>
                 </FormItem>
               </Form>
             </Col>
