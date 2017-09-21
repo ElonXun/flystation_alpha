@@ -57,6 +57,7 @@ class PicturesWall extends React.Component {
       this.setState({
         fileList:fileList,
       })
+      this.props.getUrlCallBack(url)
     })
   }
 
@@ -171,6 +172,9 @@ class saveDetails extends React.Component {
       blogTape:'',
       isTop:'',
       cover:'',
+      newCover:'',
+      isUpdataTitle:false,
+      isUpdateContent:false,
     })
   }
 
@@ -191,7 +195,8 @@ class saveDetails extends React.Component {
     // 使用 onchange 函数监听内容的变化，并实时更新到 state 中
     editor.customConfig.onchange = html => {
       this.setState({
-        editorContent: html
+        editorContent: html,
+        isUpdateContent:true,
       })
     }
 
@@ -238,15 +243,46 @@ class saveDetails extends React.Component {
   titleChange=(e)=>{
     this.setState({
       blogTitle:e.target.value,
+      isUpdataTitle:true,
     })
   }
 
   getUrl=(url)=>{
+    this.setState({
+      newCover:url,
+    })
      console.log('pic',url)
   }
 
   saveBlog=()=>{
-    alert('保存修改')
+    if(this.state.isUpdataTitle || this.state.isUpdateContent || this.state.newCover){
+      let body = {
+        blogId: this.props.match.params.blogId,
+        data:{}
+      }
+
+      if(this.state.isUpdataTitle){
+         body.data.blogTitle = this.state.blogTitle
+      }
+
+      if(this.state.isUpdateContent){
+        body.data.blogContent = this.state.editorContent
+      }
+
+      if(this.state.newCover){
+        body.data.blogPicture = this.state.newCover
+      }
+      console.log('修改信息',body)
+      asyncFetch('post', HOST + 'api/saveBlogDetails',body ).then((res)=>{
+        if(res.code === 200){
+          alert('修改成功')
+        }
+      })
+
+    }else{
+      alert('请先修改信息')
+    }
+
   }
 
   render() {
