@@ -23,7 +23,11 @@
 ## 后端
 
     调[flystation_koa2](https://github.com/ElonXun/flystation_koa2)提供的接口
-   
+
+
+## 后台管理界面(使用antd搭建)
+   **添加新博客**
+   ![backView](https://github.com/ElonXun/flystation_alpha/blob/master/example/image/2980A65C-E858-4744-904F-12B2256C74CF.png)
 
 ## 版本更新
 * 0.1版
