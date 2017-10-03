@@ -1,19 +1,65 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import styles from './login.css';
+import AsyncFetch from '../../utils/common';
+import { HOST } from '../../utils/config';
 
 const FormItem = Form.Item;
 
 
 class loginForm extends React.Component {
+
+  constructor(props){
+    super(props)
+    this.state = ({
+       userName:'',
+       passWord:'',
+    })
+  }
+
+
   handleSubmit = (e) => {
+    // console.log(this.state.userName,this.state.passWord)
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // console.log('Received values of form: ', values);
       }
     });
+    //请求登录接口
+    let data = {
+      userName:this.state.userName,
+      passWord:this.state.passWord,
+    }
+    AsyncFetch('post',HOST+'test/verifyAccount',data).then((res)=>{
+      if(res.code==200&&res.status=='success'){
+        alert('登录成功')
+      }
+    })
+
   }
+
+  handleClick=(key,e)=>{
+    // console.log(e.target.value)
+    switch (key) {
+      case 'userName':
+        this.setState({
+          userName:e.target.value,
+        })
+        break; 
+      case 'passWord':
+        this.setState({
+          passWord:e.target.value,
+        })
+        break;
+      default:
+        // statements_def
+        break;
+    }
+  }
+
+
+
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
@@ -23,14 +69,14 @@ class loginForm extends React.Component {
               {getFieldDecorator('userName', {
                 rules: [{ required: true, message: 'Please input your username!' }],
               })(
-                  <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" />
+                  <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="Username" onChange={(e)=>{this.handleClick('userName',e)}}/>
               )}
             </FormItem>
             <FormItem>
               {getFieldDecorator('password', {
                 rules: [{ required: true, message: 'Please input your Password!' }],
               })(
-                  <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" />
+                  <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" placeholder="Password" onChange={(e)=>{this.handleClick('passWord',e)}}/>
               )}
             </FormItem>
             <FormItem>
