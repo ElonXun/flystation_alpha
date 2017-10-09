@@ -26,9 +26,11 @@
 
 
 ## 后台管理界面(使用antd搭建)
+   **博客管理员登录**
+   ![admin](https://github.com/ElonXun/flystation_alpha/blob/master/example/image/3DC89429-6DDC-4E1B-A281-4D42D60FDBB0.png)
    **添加新博客**
    ![backView](https://github.com/ElonXun/flystation_alpha/blob/master/example/image/2980A65C-E858-4744-904F-12B2256C74CF.png)
-
+   
 ## 版本更新
 * 0.1版
  ```
