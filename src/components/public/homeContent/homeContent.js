@@ -27,15 +27,13 @@ const Homepage = ({  blogs,history,match }) => {
                   <div className={styles.rightNav}>
                     <div className={styles.rightNavContainer}>
                       <RightNavHeader iconType={'like-o'} navTitle={'阅读最多'} />
-                      <div className={styles.mostReadContent}>
-                        lantern访问facebook等国外网站
-                      </div>
-                      <div className={styles.mostReadContent}>
-                        lantern访问facebook等国外网站
-                      </div>
-                      <div className={styles.mostReadContent}>
-                        lantern访问facebook等国外网站
-                      </div>
+                      {
+                           blogs.sort((a,b)=>{
+                              return b.blogReview-a.blogReview
+                           }).slice(0, 3).map((val,index)=>{
+                               return ( <div className={styles.mostReadContent}>{val.blogTitle}</div>)
+                           })
+                      }
                     </div>
                     <div className={styles.rightNavContainer}>
                       <RightNavHeader iconType={'tag-o'} navTitle={'标签'} />

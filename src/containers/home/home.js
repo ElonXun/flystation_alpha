@@ -21,7 +21,7 @@ class home extends React.Component{
   }
 
   componentDidMount(){
-
+     
   }
 
   componentWillReceiveProps(newProps) {
