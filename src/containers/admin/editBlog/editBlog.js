@@ -48,8 +48,17 @@ class editBlog extends React.Component {
     title: '是否置顶',
     dataIndex: 'isTop',
     key: 'isTop',
-    render:(isTop)=>(
-        <Select defaultValue={isTop.toString()} style={{ width: 80 }}>
+    render:(isTop,record)=>(
+        <Select defaultValue={isTop.toString()} style={{ width: 80 }} onChange={(val)=>{
+          let data = {}
+          data.blogId=record._id
+          data.isTop =val*1
+          AsyncFetch('post',HOST+'api/setBlogTop',data).then((res)=>{
+            if(res.code == 200){
+              alert('操作成功')
+            }
+          })
+        }}>
            <Option value={'0'}>不置顶</Option>
            <Option value={'1'}>置顶</Option>
         </Select>
