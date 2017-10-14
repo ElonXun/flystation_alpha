@@ -1,4 +1,4 @@
-import { HOST,QINIU } from './config';
+import { HOST,QINIU,TOKEN } from './config';
 import uuidv4 from 'uuid/v4';
 
 export const asyncFetch = (method, url, data) => {
@@ -55,6 +55,35 @@ export const uploadPicture = (file,pathType,successCallBack)=>{
     successCallBack(url)
   })
 }
+
+//cookies 设置
+export const fSetCookieMesCommon = (key, val) => {
+  document.cookie = key + "=" + val;
+}
+//查询cookies
+export const fGetCookieMes = (key) => {
+  let strCookie = document.cookie;
+  strCookie = strCookie.replace(/\s/g, "");
+  let arrCookie = strCookie.split(';');
+  for (let i = 0; i < arrCookie.length; i++) {
+    let arr = arrCookie[i].split("=");
+    if (key == arr[0] && arr[1] != '') {
+      return arr[1];
+    }
+  }
+
+  return ""
+};
+
+//防止未登录用户访问页面
+export const isNoLogined = ()=>{
+  if(fGetCookieMes(TOKEN)){
+    return false
+  }else{
+    return true
+  }
+}
+
 
 
 export default asyncFetch

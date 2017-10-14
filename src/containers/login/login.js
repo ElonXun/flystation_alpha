@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import styles from './login.css';
-import AsyncFetch from '../../utils/common';
-import { HOST } from '../../utils/config';
+import AsyncFetch,{fGetCookieMes,fSetCookieMesCommon} from '../../utils/common';
+import { HOST,TOKEN } from '../../utils/config';
+
 
 const FormItem = Form.Item;
 
@@ -33,7 +34,9 @@ class loginForm extends React.Component {
     }
     AsyncFetch('post',HOST+'test/verifyAccount',data).then((res)=>{
       if(res.code==200&&res.status=='success'){
+        // fSetCookieMesCommon(TOKEN,token)
         alert('登录成功')
+
       }
     })
 
