@@ -31,7 +31,7 @@ const Homepage = ({  blogs,history,match }) => {
                            blogs.sort((a,b)=>{
                               return b.blogReview-a.blogReview
                            }).slice(0, 3).map((val,index)=>{
-                               return ( <div className={styles.mostReadContent}>{val.blogTitle}</div>)
+                               return ( <div key={index} className={styles.mostReadContent}>{val.blogTitle}</div>)
                            })
                       }
                     </div>

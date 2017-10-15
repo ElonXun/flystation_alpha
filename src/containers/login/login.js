@@ -33,10 +33,11 @@ class loginForm extends React.Component {
       passWord:this.state.passWord,
     }
     AsyncFetch('post',HOST+'test/verifyAccount',data).then((res)=>{
+      console.log(res)
       if(res.code==200&&res.status=='success'){
-        // fSetCookieMesCommon(TOKEN,token)
+        fSetCookieMesCommon(TOKEN,res.date.token)
         alert('登录成功')
-
+        this.props.history.push('/admin')
       }
     })
 

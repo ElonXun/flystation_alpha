@@ -3,6 +3,10 @@ import { Layout, Menu, Icon } from 'antd';
 import { Route } from 'react-router-dom';
 import styles from './admin.css';
 import asyncComponent from '../../asyncComponent';
+import { isNoLogined } from '../../utils/common';
+
+
+
 
 const { Header, Sider, Content } = Layout;
 
@@ -25,6 +29,16 @@ class admin extends React.Component {
       collapsed: true,
     })
   }
+
+
+  componentWillMount(){
+    if(isNoLogined()){
+      this.props.history.push('/login')
+    }else{
+
+    }
+  }
+
 
   toggle = () => {
     this.setState({
