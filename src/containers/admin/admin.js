@@ -32,10 +32,11 @@ class admin extends React.Component {
 
 
   componentWillMount(){
+    console.log(this.props.history)
     if(isNoLogined()){
       this.props.history.push('/login')
     }else{
-
+      this.props.history.push('/admin/addBlog')
     }
   }
 
