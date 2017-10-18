@@ -94,10 +94,17 @@ class EditableTagGroup extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      tags: ['Unremovable', 'Tag 2', 'Tag 3'],
+      tags: [],
       inputVisible: false,
       inputValue: '',
     };
+  }
+
+  componentWillMount(){
+    console.log('需要的数据blogtags',this.props.blogTags)
+    this.setState({
+      tags:this.props.blogTags,
+    })
   }
 
   handleClose = (removedTag) => {
@@ -218,14 +225,22 @@ class saveDetails extends React.Component {
         .then((res) => {
           // console.log(res)
           let blogDetails = res.data.blogDetails
-
+          let blogTags
+          if(!res.data.blogTags){
+            blogTags = ['testTagOne','testTagTwo','testTagThree']
+          }else{
+            blogTags= res.data.blogTags.split(',')
+          }
           editor.txt.html(blogDetails.blogContent)
+
+
           //设置其他参数
           this.setState({
             blogTitle:blogDetails.blogTitle,
             cover:blogDetails.blogPicture,
             blogTape:blogDetails.blogTape.toString(),
             isTop:blogDetails.isTop,
+            blogTags:blogTags,
           })
 
         })
@@ -285,6 +300,10 @@ class saveDetails extends React.Component {
 
   }
 
+  getNewTags=(Tags)=>{
+    console.log(Tags)
+  }
+
   render() {
     // console.log('拿到了',this.state.blogTape)
     return (
@@ -320,7 +339,7 @@ class saveDetails extends React.Component {
                           labelCol={{span: 3}}
                           wrapperCol={{span: 21}}
                           colon={false}>
-                  <EditableTagGroup/>
+                  {this.state.blogTags?<EditableTagGroup blogTags={this.state.blogTags} getNewTagsCallBack={this.getNewTags}/>:null}
                 </FormItem>
                 <FormItem label={<span style={{float: 'left'}}>文章内容:</span>}
                           labelCol={{span: 3}}
