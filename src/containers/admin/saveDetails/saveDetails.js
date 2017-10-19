@@ -102,13 +102,24 @@ class EditableTagGroup extends React.Component {
 
   componentWillMount(){
     console.log('需要的数据blogtags',this.props.blogTags)
+    let tags = this.props.blogTags
+    let blogTags=tags.map((tag,index)=>{
+      return {
+        tagName:tag,
+        tagStatus:0,
+        tagSelect:false,
+      }
+    })
+    console.log(blogTags)
     this.setState({
-      tags:this.props.blogTags,
+      tags:blogTags,
     })
   }
 
   handleClose = (removedTag) => {
-    const tags = this.state.tags.filter(tag => tag !== removedTag);
+    const tags = this.state.tags.filter((tag)=>{
+      return tag.tagName !== removedTag
+    });
     console.log(tags);
     this.setState({ tags });
   }
@@ -125,8 +136,12 @@ class EditableTagGroup extends React.Component {
     const state = this.state;
     const inputValue = state.inputValue;
     let tags = state.tags;
-    if (inputValue && tags.indexOf(inputValue) === -1) {
-      tags = [...tags, inputValue];
+    if (inputValue && tags.filter((tag)=>{return tag.tagName==inputValue}).length === 0) {
+      tags = [...tags, {
+        tagName:inputValue,
+        tagStatus:1,
+        tagSelect:false,
+      }];
     }
     console.log(tags);
     this.setState({
@@ -142,14 +157,29 @@ class EditableTagGroup extends React.Component {
     const { tags, inputVisible, inputValue } = this.state;
     return (
         <div>
-          {tags.map((tag, index) => {
-            const isLongTag = tag.length > 20;
+          {tags.map((blogTag, index) => {
+            const isLongTag = blogTag.tagName.length > 20;
             const tagElem = (
-                <Tag key={tag} closable={index > -1} afterClose={() => this.handleClose(tag)}>
-                  {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+                <Tag key={blogTag.tagName} color={blogTag.tagSelect==0?null:'blue'}
+                     closable={index > this.props.blogTags.length-1}
+                     onClick={()=>{
+                       let newTags=this.state.tags.map((tag,index)=>{
+                          if(tag.tagName==blogTag.tagName){
+                            // console.log(tag)
+                            return Object.assign({},tag,{tagSelect:!blogTag.tagSelect})
+                          }else{
+                            return tag
+                          }
+                       })
+                       this.setState({
+                         tags:newTags,
+                       })
+                     }}
+                     afterClose={() => this.handleClose(blogTag.tagName)}>
+                  {isLongTag ? `${blogTag.tagName.slice(0, 20)}...` : blogTag.tagName}
                 </Tag>
             );
-            return isLongTag ? <Tooltip title={tag}>{tagElem}</Tooltip> : tagElem;
+            return isLongTag ? <Tooltip title={blogTag.tagName}>{tagElem}</Tooltip> : tagElem;
           })}
           {inputVisible && (
               <Input
