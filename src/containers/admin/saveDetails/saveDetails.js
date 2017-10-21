@@ -101,16 +101,17 @@ class EditableTagGroup extends React.Component {
   }
 
   componentWillMount(){
-    console.log('需要的数据blogtags',this.props.blogTags)
+    // console.log('需要的数据blogtags',this.props.blogTags)
     let tags = this.props.blogTags
     let blogTags=tags.map((tag,index)=>{
       return {
-        tagName:tag,
+        tagName:tag.tagName,
+        tagId:tag.tagId,
         tagStatus:0,
         tagSelect:false,
       }
     })
-    console.log(blogTags)
+    // console.log(blogTags)
     this.setState({
       tags:blogTags,
     })
@@ -120,7 +121,7 @@ class EditableTagGroup extends React.Component {
     const tags = this.state.tags.filter((tag)=>{
       return tag.tagName !== removedTag
     });
-    console.log(tags);
+    // console.log(tags);
     this.setState({ tags });
   }
 
@@ -143,7 +144,7 @@ class EditableTagGroup extends React.Component {
         tagSelect:false,
       }];
     }
-    console.log(tags);
+    // console.log(tags);
     this.setState({
       tags,
       inputVisible: false,
@@ -175,7 +176,7 @@ class EditableTagGroup extends React.Component {
                          tags:newTags,
                        })
                      }}
-                     afterClose={() => this.handleClose(blogTag.tagName)}>
+                     afterClose={()=>{this.handleClose(blogTag.tagName)}}>
                   {isLongTag ? `${blogTag.tagName.slice(0, 20)}...` : blogTag.tagName}
                 </Tag>
             );
@@ -194,6 +195,9 @@ class EditableTagGroup extends React.Component {
               />
           )}
           {!inputVisible && <Button size="small" type="dashed" onClick={this.showInput}>+ New Tag</Button>}
+          <Button onClick={()=>{
+            console.log('result ',this.state.tags)
+          }}>结果</Button>
         </div>
     );
   }
@@ -257,7 +261,8 @@ class saveDetails extends React.Component {
           let blogDetails = res.data.blogDetails
           let blogTags
           if(!res.data.blogTags){
-            blogTags = ['testTagOne','testTagTwo','testTagThree']
+            blogTags = [{tagName:'testTagOne',tagId:10001},{tagName:'testTagTwo',tagId:10002},{tagName:'testTagThree',tagId:10003}]
+            // blogTags = ['testTagOne','testTagTwo','testTagThree']
           }else{
             blogTags= res.data.blogTags.split(',')
           }
