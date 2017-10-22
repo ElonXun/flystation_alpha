@@ -201,9 +201,6 @@ class EditableTagGroup extends React.Component {
               />
           )}
           {!inputVisible && <Button size="small" type="dashed" onClick={this.showInput}>+ New Tag</Button>}
-          <Button onClick={()=>{
-            console.log('result ',this.state.tags)
-          }}>结果</Button>
         </div>
     );
   }
@@ -222,6 +219,7 @@ class saveDetails extends React.Component {
       newCover:'',
       isUpdataTitle:false,
       isUpdateContent:false,
+      tags:[],
     })
   }
 
@@ -313,7 +311,7 @@ class saveDetails extends React.Component {
   }
 
   saveBlog=()=>{
-    if(this.state.isUpdataTitle || this.state.isUpdateContent || this.state.newCover){
+    if(this.state.isUpdataTitle || this.state.isUpdateContent || this.state.newCover||this.state.tags.length > 0){
       let body = {
         blogId: this.props.match.params.blogId,
         data:{}
@@ -330,6 +328,11 @@ class saveDetails extends React.Component {
       if(this.state.newCover){
         body.data.blogPicture = this.state.newCover
       }
+
+      if(this.state.tags.length > 0){
+        body.data.blogTags=this.state.tags
+      }
+
       console.log('修改信息',body)
       asyncFetch('post', HOST + 'api/saveBlogDetails',body ).then((res)=>{
         if(res.code === 200){
@@ -344,7 +347,14 @@ class saveDetails extends React.Component {
   }
 
   getTags=(tags)=>{
-    console.log(tags)
+    let result = tags.filter((tag,index)=>{
+      return tag.tagSelect == true
+    })
+    this.setState({
+      tags:result
+    },()=>{
+      console.log('操作后得到的tags',this.state.tags)
+    })
   }
 
   render() {
