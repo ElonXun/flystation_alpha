@@ -101,7 +101,7 @@ class EditableTagGroup extends React.Component {
   }
 
   componentWillMount(){
-    // console.log('需要的数据blogtags',this.props.blogTags)
+    console.log('需要的数据blogtags',this.props.blogTags)
     let tags = this.props.blogTags
     let blogTags=tags.map((tag,index)=>{
       return {
@@ -122,7 +122,9 @@ class EditableTagGroup extends React.Component {
       return tag.tagName !== removedTag
     });
     // console.log(tags);
-    this.setState({ tags });
+    this.setState({ tags },()=>{
+      this.props.getTagsCallBack(this.state.tags)
+    });
   }
 
   showInput = () => {
@@ -149,6 +151,8 @@ class EditableTagGroup extends React.Component {
       tags,
       inputVisible: false,
       inputValue: '',
+    },()=>{
+      this.props.getTagsCallBack(this.state.tags)
     });
   }
 
@@ -174,6 +178,8 @@ class EditableTagGroup extends React.Component {
                        })
                        this.setState({
                          tags:newTags,
+                       },()=>{
+                         this.props.getTagsCallBack(this.state.tags)
                        })
                      }}
                      afterClose={()=>{this.handleClose(blogTag.tagName)}}>
@@ -261,8 +267,10 @@ class saveDetails extends React.Component {
           let blogDetails = res.data.blogDetails
           let blogTags
           if(!res.data.blogTags){
-            blogTags = [{tagName:'testTagOne',tagId:10001},{tagName:'testTagTwo',tagId:10002},{tagName:'testTagThree',tagId:10003}]
+            // blogTags = [{tagName:'testTagOne',tagId:10001},{tagName:'testTagTwo',tagId:10002},{tagName:'testTagThree',tagId:10003}]
             // blogTags = ['testTagOne','testTagTwo','testTagThree']
+            // blogTags = undefined
+            blogTags=[]
           }else{
             blogTags= res.data.blogTags.split(',')
           }
@@ -335,8 +343,8 @@ class saveDetails extends React.Component {
 
   }
 
-  getNewTags=(Tags)=>{
-    console.log(Tags)
+  getTags=(tags)=>{
+    console.log(tags)
   }
 
   render() {
@@ -374,7 +382,7 @@ class saveDetails extends React.Component {
                           labelCol={{span: 3}}
                           wrapperCol={{span: 21}}
                           colon={false}>
-                  {this.state.blogTags?<EditableTagGroup blogTags={this.state.blogTags} getNewTagsCallBack={this.getNewTags}/>:null}
+                  {this.state.blogTags?<EditableTagGroup blogTags={this.state.blogTags} getTagsCallBack={this.getTags}/>:null}
                 </FormItem>
                 <FormItem label={<span style={{float: 'left'}}>文章内容:</span>}
                           labelCol={{span: 3}}
