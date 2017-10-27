@@ -261,7 +261,7 @@ class saveDetails extends React.Component {
     //博客详情
     asyncFetch('post', HOST + 'api/blogDetails', {blogId: this.props.match.params.blogId})
         .then((res) => {
-          // console.log(res)
+          console.log('博客详情',res)
           let blogDetails = res.data.blogDetails
           let blogTags
           if(!res.data.blogTags){
@@ -270,7 +270,7 @@ class saveDetails extends React.Component {
             // blogTags = undefined
             blogTags=[]
           }else{
-            blogTags= res.data.blogTags.split(',')
+            blogTags= res.data.blogTags
           }
           editor.txt.html(blogDetails.blogContent)
 
