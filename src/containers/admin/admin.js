@@ -27,16 +27,28 @@ class admin extends React.Component {
     super(props)
     this.state = ({
       collapsed: true,
+      leftBarSelectKey:[]
     })
   }
 
 
   componentWillMount(){
-    console.log(this.props.history)
     if(isNoLogined()){
       this.props.history.push('/login')
-    }else{
-      // this.props.history.push('/admin/addBlog')
+    }
+
+    if(this.props.history.location.pathname.indexOf('addBlog')>0){
+      this.setState({
+        leftBarSelectKey:['1']
+      })
+    }else if(this.props.history.location.pathname.indexOf('editBlog')>0){
+      this.setState({
+        leftBarSelectKey:['2']
+      })
+    }else if(this.props.history.location.pathname.indexOf('saveDetails')>0){
+      this.setState({
+        leftBarSelectKey:['2']
+      })
     }
   }
 
@@ -74,7 +86,7 @@ class admin extends React.Component {
               <div className={styles.logo} />
               <Menu theme="dark"
                     mode="inline"
-                    defaultSelectedKeys={['1']}
+                    defaultSelectedKeys={this.state.leftBarSelectKey}
                     onClick={this.handleCick}>
                 <Menu.Item key="1">
                   <Icon type="user" />
