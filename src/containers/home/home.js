@@ -12,12 +12,20 @@ class home extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      data:this.props.blogs
+      data:this.props.blogs,
+      allTags:[],
     }
   }
   componentWillMount(){
     //HOST => localhost
     this.props.getBlogs(HOST+'api/query')
+    AsyncFetch('get',HOST+'api/getAllBlogTags')
+        .then((res)=>{
+          this.setState({
+            allTags:res.data.blogTags,
+          })
+          // console.log('getAllBlogTags',res)
+        })
   }
 
   componentDidMount(){
@@ -56,7 +64,7 @@ class home extends React.Component{
     return(
        <div>
          <Navigator onclick={this.props.onclick} currentTag={'home'} {...this.props}/>
-         <HomeContent blogs={this.props.blogs} {...this.props}/>
+         <HomeContent blogs={this.props.blogs} {...this.props} blogTags={this.state.allTags}/>
        </div>
     )
   }

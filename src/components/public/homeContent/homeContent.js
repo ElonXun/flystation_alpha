@@ -4,7 +4,7 @@ import { Tag, Row, Col } from 'antd';
 import RightNavHeader from '../rightNavHeader/navHeader.js';
 import ArticleSelect from '../articleSelect/articleSelect';
 
-const Homepage = ({  blogs,history,match }) => {
+const Homepage = ({  blogs,history,match,blogTags }) => {
   // console.log('子组件里的 homepage  render')
   return (
     <div>
@@ -38,7 +38,11 @@ const Homepage = ({  blogs,history,match }) => {
                     <div className={styles.rightNavContainer}>
                       <RightNavHeader iconType={'tag-o'} navTitle={'标签'} />
                       <div className={styles.tagsContainer}>
-                        <Tag color="pink" className={styles.tagWrap}>pink</Tag>
+                        {
+                          blogTags.map((tag,index)=>{
+                            return (<Tag key={index} color="pink" className={styles.tagWrap}>{tag.tagContent}</Tag>)
+                          })
+                        }
                       </div>
                     </div>
                   </div>
