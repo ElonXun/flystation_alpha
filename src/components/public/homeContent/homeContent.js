@@ -3,6 +3,7 @@ import styles from './homeContent.css';
 import { Tag, Row, Col } from 'antd';
 import RightNavHeader from '../rightNavHeader/navHeader.js';
 import ArticleSelect from '../articleSelect/articleSelect';
+import {getRandomColor} from '../../../utils/common';
 
 const Homepage = ({  blogs,history,match,blogTags }) => {
   // console.log('子组件里的 homepage  render')
@@ -40,7 +41,7 @@ const Homepage = ({  blogs,history,match,blogTags }) => {
                       <div className={styles.tagsContainer}>
                         {
                           blogTags.map((tag,index)=>{
-                            return (<Tag key={index} color="pink" className={styles.tagWrap}>{tag.tagContent}</Tag>)
+                            return (<Tag key={index} color={getRandomColor()} className={styles.tagWrap}>{tag.tagContent}</Tag>)
                           })
                         }
                       </div>

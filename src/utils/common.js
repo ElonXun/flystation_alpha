@@ -1,4 +1,4 @@
-import { HOST,QINIU,TOKEN } from './config';
+import { HOST,QINIU,TOKEN,TagColors } from './config';
 import uuidv4 from 'uuid/v4';
 
 export const asyncFetch = (method, url, data) => {
@@ -82,6 +82,12 @@ export const isNoLogined = ()=>{
   }else{
     return true
   }
+}
+
+//随机颜色输出
+export const getRandomColor = ()=>{
+  let index = Math.floor(Math.random()*10)
+  return TagColors[index]
 }
 
 
