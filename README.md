@@ -5,7 +5,6 @@
    
    线上地址: http://www.shangqingtian.cn:5000/#/
 
-
 ## 主要技术栈(前端)
 
    ```
@@ -24,6 +23,9 @@
 
     调[flystation_koa2](https://github.com/ElonXun/flystation_koa2)提供的接口
 
+## 前端界面
+   **首页**
+   ![home](https://github.com/ElonXun/flystation_alpha/blob/master/example/image/QQ20171031-182947.png)
 
 ## 后台管理界面(使用antd搭建)
    **博客管理员登录**
