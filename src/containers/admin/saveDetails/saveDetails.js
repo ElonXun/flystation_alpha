@@ -101,7 +101,7 @@ class EditableTagGroup extends React.Component {
   }
 
   componentWillMount(){
-    console.log('需要的数据blogtags',this.props.blogTags)
+    // console.log('需要的数据blogtags',this.props.blogTags)
     let tags = this.props.blogTags
     let blogTags=tags.map((tag,index)=>{
       return {
@@ -261,7 +261,7 @@ class saveDetails extends React.Component {
     //博客详情
     asyncFetch('post', HOST + 'api/blogDetails', {blogId: this.props.match.params.blogId})
         .then((res) => {
-          console.log('博客详情',res)
+          // console.log('博客详情',res)
           let blogDetails = res.data.blogDetails
           let blogTags
           if(!res.data.blogTags){
@@ -307,7 +307,7 @@ class saveDetails extends React.Component {
     this.setState({
       newCover:url,
     })
-     console.log('pic',url)
+     // console.log('pic',url)
   }
 
   saveBlog=()=>{
@@ -333,7 +333,8 @@ class saveDetails extends React.Component {
         body.data.blogTags=this.state.tags
       }
 
-      console.log('修改信息',body)
+      // console.log('修改信息',body)
+
       asyncFetch('post', HOST + 'api/saveBlogDetails',body ).then((res)=>{
         if(res.code === 200){
           alert('修改成功')
