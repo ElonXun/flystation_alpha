@@ -14,8 +14,6 @@
      redux
    redux-thunk
    Immutable
-     es6
-     fetch
      antd
    ```
    
@@ -44,7 +42,6 @@
 4.增加antd样式
 5.用 react-router 配置代码分割 达到异步加载组
 6.部分组件应用Immutable数据结构 增强前端性能
-
 
 2017-09-07 12:31:25
     
